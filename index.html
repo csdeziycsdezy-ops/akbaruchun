@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)file:///C:/Users/DELL/Downloads/zarnigor_taklifnoma.html -->
+<html lang="uz"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zarnigor uchun 💖</title>
+<link href="./Zarnigor uchun 💖_files/css2" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4f0 40%, #ffd6e8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .name-fancy {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #c94070, #e8698a, #ff9eb5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    text-shadow: none;
+    filter: drop-shadow(0 2px 8px rgba(201,64,112,0.3));
+  }
+
+  #app {
+    min-height: 520px;
+    width: 100%;
+    max-width: 520px;
+    margin: 2rem auto;
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4f0 40%, #ffd6e8 100%);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 50px rgba(201,64,112,0.15);
+  }
+
+  .heart-bg {
+    position: absolute;
+    opacity: 0.15;
+    animation: floatHeart linear infinite;
+    pointer-events: none;
+    user-select: none;
+  }
+  @keyframes floatHeart {
+    0%   { transform: translateY(120%) rotate(0deg); opacity: 0.1; }
+    50%  { opacity: 0.2; }
+    100% { transform: translateY(-120%) rotate(20deg); opacity: 0; }
+  }
+
+  .screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    max-width: 420px;
+    width: 100%;
+    animation: fadeIn 0.5s ease;
+    position: relative;
+    z-index: 10;
+  }
+  .screen.active { display: flex; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .emoji-big { font-size: 3rem; }
+
+  h1 {
+    font-size: 1.5rem;
+    color: #b5375a;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  p.subtitle {
+    font-size: 0.95rem;
+    color: #c06080;
+    line-height: 1.6;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #e8698a, #c94070);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(201,64,112,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 24px rgba(201,64,112,0.45);
+  }
+  .btn-primary:active { transform: scale(0.97); }
+
+  .options-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    width: 100%;
+    min-height: 130px;
+    position: relative;
+  }
+
+  .btn-option {
+    background: white;
+    color: #c94070;
+    border: 2px solid #f4a8c0;
+    padding: 0.65rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    box-shadow: 0 2px 10px rgba(232,105,138,0.15);
+    white-space: nowrap;
+  }
+  .btn-option:hover { background: #fff0f5; border-color: #e8698a; }
+  .btn-option.correct {
+    background: linear-gradient(135deg, #e8698a, #c94070);
+    color: white;
+    border-color: #c94070;
+  }
+  .btn-option.correct:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 18px rgba(201,64,112,0.4);
+  }
+
+  /* Injiq tugmalar — to'q, aniq ko'rinadigan */
+  .btn-naughty {
+    position: absolute;
+    background: #c94070;
+    color: #fff0f5;
+    border: 2px solid #a8305a;
+    padding: 0.65rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: left 0.25s ease, top 0.25s ease, opacity 0.3s;
+    white-space: nowrap;
+    box-shadow: 0 3px 12px rgba(201,64,112,0.45);
+    letter-spacing: 0.2px;
+  }
+  .btn-naughty:hover {
+    background: #b5375a;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #ffd6e8;
+    border-radius: 10px;
+    overflow: visible;
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e8698a, #c94070);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+    position: relative;
+  }
+  .progress-fill::after {
+    content: '💕';
+    position: absolute;
+    right: -10px;
+    top: -8px;
+    font-size: 1.1rem;
+  }
+  .step-label {
+    font-size: 0.8rem;
+    color: #d4789a;
+    margin-top: 0.25rem;
+  }
+
+  .question-box {
+    background: white;
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 4px 20px rgba(232,105,138,0.12);
+    border: 1.5px solid #f4d0df;
+    width: 100%;
+  }
+  .question-box h1 { font-size: 1.25rem; }
+
+  /* Ticket */
+  .ticket {
+    background: white;
+    border-radius: 16px;
+    max-width: 340px;
+    width: 100%;
+    box-shadow: 0 8px 40px rgba(201,64,112,0.2);
+    overflow: hidden;
+    border: 2px solid #f4a8c0;
+  }
+  .ticket-header {
+    background: linear-gradient(135deg, #e8698a, #c94070);
+    color: white;
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+  }
+  .ticket-header .kino-label { font-size: 1rem; letter-spacing: 0.5px; }
+  .ticket-header .movie-title { font-size: 1.3rem; font-weight: 800; margin-top: 0.25rem; line-height: 1.3; }
+
+  .ticket-divider {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: white;
+  }
+  .ticket-divider::before, .ticket-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, #f4a8c0 0, #f4a8c0 6px, transparent 6px, transparent 12px);
+  }
+  .ticket-circle-l, .ticket-circle-r {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fff0f5, #ffe4f0);
+    border: 2px solid #f4a8c0;
+    flex-shrink: 0;
+  }
+  .ticket-circle-l { margin-left: -11px; }
+  .ticket-circle-r { margin-right: -11px; }
+
+  .ticket-body { padding: 1.25rem 1.5rem; }
+  .ticket-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid #ffeaf2;
+    font-size: 0.88rem;
+  }
+  .ticket-row:last-child { border-bottom: none; }
+  .ticket-row .label { color: #d4789a; font-weight: 500; }
+  .ticket-row .value { color: #b5375a; font-weight: 700; text-align: right; }
+
+  .ticket-footer {
+    background: #fff0f5;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    font-size: 0.82rem;
+    color: #c06080;
+    line-height: 1.6;
+    border-top: 1px dashed #f4a8c0;
+  }
+  .ticket-footer strong {
+    color: #b5375a;
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+  }
+
+  .confetti-text {
+    font-size: 1.1rem;
+    color: #e8698a;
+    font-weight: 700;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.08); }
+  }
+
+  .floating-hearts {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+  }
+  .fh {
+    position: absolute;
+    bottom: -50px;
+    font-size: 1.4rem;
+    animation: rise 2.5s ease-out forwards;
+    opacity: 0;
+  }
+  @keyframes rise {
+    0%   { transform: translateY(0) rotate(-10deg); opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(10deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="floating-hearts" id="floatingHearts"></div>
+
+<div id="app">
+
+  <!-- Screen 0: Intro -->
+  <div class="screen active" id="s0">
+    <div class="emoji-big">💌</div>
+    <div class="name-fancy">Zarnigor</div>
+    <p class="subtitle">
+      Kichkina kviz — katta sir bilan.<br>
+      Bir nechta savolga javob ber...<br>
+      lekin ehtiyot bo'l — ba'zi tugmalar injiq 😜
+    </p>
+    <button class="btn-primary" onclick="goTo(1)">Boshladik ✨</button>
+  </div>
+
+  <!-- Screen 1 -->
+  <div class="screen" id="s1">
+    <div class="progress-bar"><div class="progress-fill" style="width:25%"></div></div>
+    <div class="step-label">1 / 4</div>
+    <div class="question-box">
+      <h1>Chorshanba kuni vaqting bormi? 📅</h1>
+    </div>
+    <div class="options-grid" id="grid1">
+      <button class="btn-option correct" onclick="correct(2)">Ha, albatta bor 🦄</button>
+    </div>
+  </div>
+
+  <!-- Screen 2 -->
+  <div class="screen" id="s2">
+    <div class="progress-bar"><div class="progress-fill" style="width:50%"></div></div>
+    <div class="step-label">2 / 4</div>
+    <div class="question-box">
+      <h1>Birga qayerga boramiz? 🗺️</h1>
+    </div>
+    <div class="options-grid" id="grid2">
+      <button class="btn-option correct" onclick="correct(3)">Kinoroom 🎥</button>
+    </div>
+  </div>
+
+  <!-- Screen 3 -->
+  <div class="screen" id="s3">
+    <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+    <div class="step-label">3 / 4</div>
+    <div class="question-box">
+      <h1>Nima ko'ramiz? 🎬</h1>
+    </div>
+    <div class="options-grid" id="grid3">
+      <button class="btn-option correct" onclick="correct(4)">O'yinchoqlar Sarguzashti 5 🧸</button>
+    </div>
+  </div>
+
+  <!-- Screen 4 -->
+  <div class="screen" id="s4">
+    <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+    <div class="step-label">4 / 4</div>
+    <div class="question-box">
+      <h1>Kinоdan keyin Safiya shriniklari do'koniga tushamizmi? 🍡</h1>
+    </div>
+    <div class="options-grid" id="grid4">
+      <button class="btn-option correct" onclick="showTicket()">Ha, albatta ❤️</button>
+    </div>
+  </div>
+
+  <!-- Final: Ticket -->
+  <div class="screen" id="sFinal">
+    <div class="confetti-text">to'g'ri tanlading 💕 Bu — uchrashuv!</div>
+    <div class="ticket">
+      <div class="ticket-header">
+        <div class="kino-label">🎬 KINO CHIPTA</div>
+        <div class="movie-title">O'yinchoqlar Sarguzashti 5 🧸</div>
+      </div>
+      <div class="ticket-divider">
+        <div class="ticket-circle-l"></div>
+        <div class="ticket-circle-r"></div>
+      </div>
+      <div class="ticket-body">
+        <div class="ticket-row">
+          <span class="label">📍 Kinoteatr</span>
+          <span class="value">Kinoroom</span>
+        </div>
+        <div class="ticket-row">
+          <span class="label">🎟️ Chipta</span>
+          <span class="value">Ikki kishilik</span>
+        </div>
+        <div class="ticket-row">
+          <span class="label">📅 Qachon</span>
+          <span class="value">Chorshanba, 24-iyun</span>
+        </div>
+        <div class="ticket-row">
+          <span class="label">⏰ Soat</span>
+          <span class="value">🤷🏼‍♂️</span>
+        </div>
+        <div class="ticket-row">
+          <span class="label">🍡 Keyin</span>
+          <span class="value">Safiya Shriniklari</span>
+        </div>
+        <div class="ticket-row">
+          <span class="label">💺 Joy</span>
+          <span class="value">yonimda ❤️</span>
+        </div>
+      </div>
+      <div class="ticket-divider">
+        <div class="ticket-circle-l"></div>
+        <div class="ticket-circle-r"></div>
+      </div>
+      <div class="ticket-footer">
+        Chiroyli bo'lib tayyorlan,<br>
+        qolganini o'zim hal qilaman 😎
+        <strong>Seni taklif qilyapti: Akbar</strong>
+      </div>
+    </div>
+  </div>
+
+<span class="heart-bg" style="left: 73.7%; animation-duration: 4.67726s; animation-delay: 4.1861s; font-size: 1.06072rem;">💕</span><span class="heart-bg" style="left: 64.7896%; animation-duration: 7.36677s; animation-delay: 4.75575s; font-size: 1.20499rem;">💖</span><span class="heart-bg" style="left: 45.8238%; animation-duration: 8.19176s; animation-delay: 2.01609s; font-size: 2.0331rem;">🌸</span><span class="heart-bg" style="left: 25.7738%; animation-duration: 5.63472s; animation-delay: 3.7425s; font-size: 1.61782rem;">💗</span><span class="heart-bg" style="left: 46.9492%; animation-duration: 4.83452s; animation-delay: 0.104543s; font-size: 1.59755rem;">✨</span><span class="heart-bg" style="left: 31.5472%; animation-duration: 9.63988s; animation-delay: 0.556314s; font-size: 2.04743rem;">💝</span><span class="heart-bg" style="left: 9.59143%; animation-duration: 8.87374s; animation-delay: 3.66108s; font-size: 1.57463rem;">🌷</span><span class="heart-bg" style="left: 75.6674%; animation-duration: 9.86532s; animation-delay: 0.211094s; font-size: 1.37806rem;">💓</span><span class="heart-bg" style="left: 14.4255%; animation-duration: 5.37016s; animation-delay: 1.51133s; font-size: 2.15809rem;">💕</span><span class="heart-bg" style="left: 53.7916%; animation-duration: 6.94331s; animation-delay: 0.194216s; font-size: 1.3352rem;">💖</span><span class="heart-bg" style="left: 88.0439%; animation-duration: 7.48686s; animation-delay: 0.2389s; font-size: 1.42842rem;">🌸</span><span class="heart-bg" style="left: 48.1935%; animation-duration: 5.99718s; animation-delay: 2.62654s; font-size: 1.04415rem;">💗</span><span class="heart-bg" style="left: 78.8809%; animation-duration: 9.88705s; animation-delay: 1.54063s; font-size: 1.42072rem;">✨</span><span class="heart-bg" style="left: 93.2054%; animation-duration: 6.25082s; animation-delay: 3.70486s; font-size: 1.45481rem;">💝</span></div>
+
+<script>
+  /* --- Background floating hearts --- */
+  (function(){
+    const app = document.getElementById('app');
+    const emojis = ['💕','💖','🌸','💗','✨','💝','🌷','💓'];
+    for(let i = 0; i < 14; i++){
+      const h = document.createElement('span');
+      h.className = 'heart-bg';
+      h.textContent = emojis[i % emojis.length];
+      h.style.left = (Math.random()*90+5) + '%';
+      h.style.animationDuration = (4 + Math.random()*6) + 's';
+      h.style.animationDelay = (Math.random()*5) + 's';
+      h.style.fontSize = (1 + Math.random()*1.2) + 'rem';
+      app.appendChild(h);
+    }
+  })();
+
+  /* --- Naughty button configs --- */
+  const naughtyButtons = {
+    1: ["Band bo'lishim mumkin 🙅‍♀️"],
+    2: ["Yana ishga 💻", "Hech qayerga 🛌"],
+    3: ["Qo'rqinchli film 🎬", "Soliqlar haqida 📊"],
+    4: ["Uyga ketaman 🏠", "Dietadaman 🥗"]
+  };
+
+  function goTo(step) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    const id = step === 'Final' ? 'sFinal' : 's' + step;
+    document.getElementById(id).classList.add('active');
+    if(step !== 'Final') spawnNaughty(step);
+  }
+
+  function spawnNaughty(step) {
+    const grid = document.getElementById('grid' + step);
+    if(!grid) return;
+    const labels = naughtyButtons[step] || [];
+
+    labels.forEach((text, idx) => {
+      const el = document.createElement('button');
+      el.className = 'btn-naughty';
+      el.textContent = text;
+      el.style.position = 'absolute';
+      el.style.left = (idx === 0 ? '10%' : '55%');
+      el.style.top = '65px';
+      grid.appendChild(el);
+
+      setTimeout(() => {
+        const gw = grid.offsetWidth;
+        const bw = el.offsetWidth || 160;
+        el.style.left = Math.min(Math.max(8, Math.random() * (gw - bw - 16)), gw - bw - 8) + 'px';
+        el.style.top = (60 + idx * 5) + 'px';
+      }, 60);
+
+      function escape() {
+        const gw = grid.offsetWidth;
+        const bw = el.offsetWidth || 160;
+        let nx, ny, tries = 0;
+        do {
+          nx = Math.floor(Math.random() * Math.max(10, gw - bw - 16) + 8);
+          ny = Math.floor(Math.random() * 55 + 45);
+          tries++;
+        } while(Math.abs(nx - parseInt(el.style.left || 0)) < 70 && tries < 20);
+        el.style.left = nx + 'px';
+        el.style.top = ny + 'px';
+        el.style.opacity = '0.6';
+        setTimeout(() => { el.style.opacity = '1'; }, 350);
+      }
+
+      el.addEventListener('mouseenter', escape);
+      el.addEventListener('touchstart', escape, { passive: true });
+      el.addEventListener('click', escape);
+    });
+
+    grid.style.minHeight = '135px';
+  }
+
+  function correct(nextStep) {
+    launchHearts();
+    setTimeout(() => goTo(nextStep), 500);
+  }
+
+  function showTicket() {
+    launchHearts();
+    setTimeout(() => {
+      goTo('Final');
+      setTimeout(launchHearts, 300);
+      setTimeout(launchHearts, 800);
+      setTimeout(launchHearts, 1300);
+    }, 400);
+  }
+
+  function launchHearts() {
+    const container = document.getElementById('floatingHearts');
+    const emojis = ['💕','💖','💗','💝','🌸','✨','💓','🌷'];
+    for(let i = 0; i < 12; i++){
+      setTimeout(() => {
+        const h = document.createElement('span');
+        h.className = 'fh';
+        h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        h.style.left = (Math.random() * 90 + 5) + '%';
+        h.style.fontSize = (1 + Math.random() * 0.8) + 'rem';
+        h.style.animationDuration = (1.8 + Math.random() * 1.5) + 's';
+        container.appendChild(h);
+        setTimeout(() => h.remove(), 3000);
+      }, i * 80);
+    }
+  }
+</script>
+
+
+</body></html>
